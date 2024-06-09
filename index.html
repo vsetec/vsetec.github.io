@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Vsetec Mety</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      p {font-size: 12pt; Garamond, Times, serif; color: rgb(37,34,92)}
+      li {font-size: 12pt; Garamond, Times, serif; color: rgb(0, 51, 0)}
+      h2 {font-family: Garamond, Times, serif; font-style:italic; font-size: 300%}
+      pre {font-size: 10pt; font-family: "Lucida Console", monospace; color: rgb(0, 51, 0); background-color: lightgrey}
+ 
+
+    </style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-369821-2']);
+  _gaq.push(['_trackPageview']);
+      
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+   })();
+                      
+</script>
+
+  </head>
+  <body bgcolor="#F7F7FF">
+    <table border="0" cellspacing="25" cellpadding="50">
+      <tr><td valign="top" bgcolor="#FFFFEB" nowrap>
+
+        <p align="center" style="font-size: 500%; font-family: Garamond, Times, serif; font-style:italic">
+          <span style="font-size: 50%">Vsetec</span>
+          <br/>
+          <span style="font-size: 200%; color: rgb(124, 19, 2)">Mety</span>
+          <br/>
+          <span style="font-size: 50%">An</span>
+          <br/>
+          <span style="font-size: 80%">Easy to Use</span>
+          <br/>
+          <span style="font-size: 50%">Non-Relational</span>
+          <br/>
+          <span style="font-size: 70%">Java-Based</span>
+          <br/>
+          <span style="font-size: 50%">Database Engine</span>
+          <br/>
+          <span style="font-size: 45%">Suitable for Web</span>
+          <br/>
+          <span style="font-size: 40%">and Storage-as-a-Service</span>
+          <br/>
+          <br/>
+          <span style="font-size: 40%">(Alpha)</span>
+          <br/>
+          <br/>
+          <span style="font-size: 30%"><a href="http://twitter.com/vsetec">@vsetec</a></span>
+          <br/>
+          <span style="font-size: 25%">(Formerly known as <a href="http://twitter.com/vsetech">@vsetech</a>)</span>
+          <br/>
+        </p>
+
+      </td>
+      <td bgcolor="#FFFFEB">
+
+        <h2>Features</h2>
+
+        <p>
+          <li>Created to simplify and accelerate the development of storage of any type: stores any sort of data.</li>
+          <li>No schema predefining or coding except for business logic</li>
+          <li>No SQL. Well... no SPARQL. No Erlang. Just dots and brackets. No user MapReduce functions</li>
+          <li>Queried like this: amount[z.usd.gross].val, person.name.cn.maiden, and that's it</li>
+          <li>Java-based: runs everywhere, where Java virtual machine runs. It is used as a simple and small Java library</li>
+          <li>Relational database is its data storage, almost any time-proven RDBMS may be used</li>
+          <li>Transactions, indices, in the nearest future - authorization subsystem, triggers</li>
+          <li>Run as an embedded storage, in the nearest future - as a server and/or as a web-service</li>
+          <li>Widely known interfaces, easy in programming</li>
+        </p>
+
+        <p>
+          An internal way of storing data is a graph, which not only allows holding information with graph nature,
+          like social networks or geo data. You can emulate storing tabular data as in relational DBs, but with
+          <li>tables of variable widths,</li>
+          <li>columns of variant types, including</li>
+          <li>complicate structures</li>
+          <li>arrays of unlimited size</li>
+          <li>all of the above could be indexed and searched</li>
+        </p>
+
+
+
+        <h2>Example</h2>
+
+
+	<p>This JSP code shows how we can output user information, given the user variable contains the needed object:</p>
+
+	<pre>
+    &lt;!-- user id is provided in id request parameter --&gt;
+    &lt;c:set var="user" value="${<font color="green">z.by[param.id]</font>}"/&gt;
+
+    &lt;h1&gt;User Info&lt;/h1&gt;
+    Login: ${<font color="green">user[z.login].val</font>}&lt;br/&gt;
+    Name: ${<font color="green">user[z.name].val</font>}&lt;br/&gt;
+    Created:
+    &lt;fmt:formatDate type="both" timeStyle="LONG" dateStyle="LONG" 
+               value="${<font color="green">user[z.createDate].val</font>}"/&gt;&lt;br/&gt;	</pre>
+
+<p>This shows how we can iterate over all users:</p>
+
+	<pre>
+    &lt;h3&gt;List of Users:&lt;/h3&gt;
+    &lt;c:forEach var="user" items="${<font color="green">z.users.set</font>}"&gt;
+      ${<font color="green">user[z.login].val</font>}: ${<font color="green">user[z.name].val</font>}&lt;br/&gt;
+    &lt;/c:forEach&gt;	</pre>
+<p>We may use JSTL forEach tag attributes features to organize paging etc.<p>
+<p>Here is shown how the form editing the user information may be defined:</p>
+	<pre>
+    &lt;!-- user id may be provided in id request parameter --&gt;
+    &lt;c:set var="user" value="${<font color="green">z.by[param.id]</font>}" scope="page"/&gt;
+    &lt;!-- this actually processes the form submitted 
+            and returns created user --&gt;
+    &lt;c:set var="user" value="${metyForm.processed.user}" scope="page"/&gt;
+
+    &lt;form method="POST" action=""&gt;
+      &lt;input type="hidden" name="set|<font color="green">z.users</font>|user"
+                 value="${user}"&gt;
+
+      Login: &lt;input type="text" name="put|<font color="green">user[z.login].val</font>" 
+                 value="${<font color="green">user[z.login].val</font>}"/&gt;&lt;br/&gt;
+      Name: &lt;input type="text" name="put|<font color="green">user[z.name].val</font>" 
+                 value="${<font color="green">user[z.name].val</font>}"/&gt;&lt;br/&gt;
+      Password: &lt;input type="password" 
+                 name="put|<font color="green">user[z.password].val</font>"/&gt;&lt;br/&gt;
+      &lt;input type="submit" value="Sign Up"&gt;
+    &lt;/form&gt;	</pre>
+
+	<p>Beyond this, no schema and object mapping definition is required.</p>
+     
+        <h2>Demo</h2>
+
+        <!--<p>
+          See the <a href="http://vsetech.ru/zipdemo/">prototype demo page</a> on a 256M memory virtual machine
+        </p>-->
+        
+        <p>
+    	    See a simple <a href="/uncensor/">demo app</a> that may be a start of
+    	    a <a href="http://www.reddit.com/">reddit</a> clone, with sources
+        </p>
+
+        <h2>Download Private Alpha</h2>
+
+        <p>
+    	    If you want to try Mety, read the 
+    	    <a href="http://sourceforge.net/projects/mety/files/MetyIntro.pdf/download">introduction</a>, 
+    	    check out the sources of our demo, download the current version 0.0.6.2 alpha 
+    	    <a href="http://sourceforge.net/projects/mety/files/mety.jar/download">here</a> and Derby jar from 
+    	    <a href="http://db.apache.org/derby/">Derby website</a>, install and try to 
+    	    do some simple apps.
+        </p>
+
+
+        <h2>Source</h2>
+
+        <p>
+          The development of Mety is hosted on <a href="http://sourceforge.net/projects/mety/">sourceforge.net</a>
+        </p>
+        
+
+        <h2>Discuss</h2>
+
+        <p>
+           Visit the <a href="https://groups.google.com/group/vsetec-mety">Google Group of 
+	   Vsetec Mety</a> or <a href="http://sourceforge.net/projects/mety/forums/forum/914774">our Forum</a> 
+	   and leave your questions, comments or wishes.
+	</p>
+	   
+        
+
+        <!--<h2>Team</h2>
+
+          <p>The project is run by Alex Sibilev and Dmitry and Fyodor Kravchenko. They are
+          <li>from London, UK and Moscow, Russia</li>
+          <li>Database experts with more than 15 years experience in RBDMS</li>
+          <li>Skilled programmers</li>
+          <li>Financial banking and telecom software creation experience</li></p>
+
+          <p><a href="mailto:dimskraft@gmail.com">Dmitry</a>:
+          <li>Mety Inventor and Architect</li>
+          <li>Has physics education (Moscow State University), profound math knowledge</li>
+          <li>Developed stock quotes analyzing applications, fuzzy text recognition software, natural speech
+          answering bot, did web application reverse engineering and took part in many other projects</li>
+          <li>Runs a Russian-speaking physicist community <a href="http://www.relativity.ru">www.relativity.ru</a> 
+          where everybody can learn that Einstein was right</li>
+          <li>Invented the Mety paradigm and architecture, developed the early versions</li></p>
+          <p><a href="mailto:alex@sibilev.com">Alex</a>:
+          <li>Vsetec developer and evangelist</li>
+          <li>Has successful entrepreneurship experience in telecom field</li>
+          <li>Certified Microsoft Solutions & Applications Developer (MCSD/MCAD), 
+          Microsoft Most Valuable Professional in SQL Server since 2005</li>
+          <li>Founder and owner of <a href="http://www.sql.ru">SQL.ru</a> - the largest database developer's online community in Russia</li>
+          <li><a href="http://uk.linkedin.com/in/alexsibilev">LinkedIn</a> 
+          </li></p>
+          <p><a href="mailto:fedd@vsetech.ru">Fyodor</a>:
+          <li>Vsetec head developer</li>
+          <li>Has education in the economics in IT (Moscow University of Economics, Statistics and Informatics)</li>
+          <li>Worked as a web programmer, developed several applications for banks and a debt collection agency,
+          including the automation of one of the first retail loan businesses in Russia</li>
+          <li>Realized how to use Dmitry's Mety in business. Started to implement Mety, improved the architecture</li>
+          <li><a href="http://ru.linkedin.com/in/kfedd">LinkedIn</a></li></p>
+      -->
+
+      </td>
+      </tr>
+
+
+
+
+
+
+
+    </table>
+  </body>
+</html>
